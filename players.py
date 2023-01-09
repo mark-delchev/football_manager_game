@@ -7,7 +7,7 @@ class PlayerSelection:
     def __init__(self):
         self.team_strength = 0
 
-    def select_team(self):
+    def select_team(self, academy_level):
         players = {}
         selected_players = {}
         counter_0 = 1
@@ -15,7 +15,7 @@ class PlayerSelection:
             if len(players.keys()) == 22:
                 break
             name = names.get_last_name()
-            rating = randint(0, 100)
+            rating = randint(0, academy_level)
             players[counter_0, name] = rating
             counter_0 += 1
 
