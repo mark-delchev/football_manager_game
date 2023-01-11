@@ -18,9 +18,9 @@ class PlayerSelection:
             rating = randint(0, academy_level)
             players[counter_0, name] = rating
             counter_0 += 1
-
+        players_sorted = sorted(players.items(), key=lambda x: x[1], reverse=True)
         counter = 1
-        for k, v in players.items():
+        for k, v in players_sorted:
             if counter % 5 != 0:
                 print(f"{k}-{v}", end="      ")
             else:
@@ -40,7 +40,7 @@ choose exactly 11 players.")
 
         players_tuples = {}
 
-        for item in players.items():
+        for item in players_sorted:
             key = item[0][0]
             players_tuples.setdefault(key, [])
             players_tuples[key].append(item)
