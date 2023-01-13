@@ -6,3 +6,4 @@ Winning is determined by random chance and the team's strength.
 Features added until now:
 - Final score algorithm
 - Player selection
+- Random rival team selection
