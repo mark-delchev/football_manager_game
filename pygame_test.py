@@ -57,6 +57,7 @@ teams_instance = Teams()
 match_instance = Match()
 rival_team = teams_instance.random_team()
 result = match_instance.simulate_match("Levski-57", f"{rival_team}")
+
 button1 = Button(
     "Play Match",
     (50, 100),
