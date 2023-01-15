@@ -35,3 +35,10 @@ while True:
     if budget >= 5000000:
         break
 
+player_selection_instance.player_development()
+
+"""
+Levski
+1 2 3 4 5 6 7 8 9 10 11
+"""
+

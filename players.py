@@ -6,6 +6,7 @@ class PlayerSelection:
 
     def __init__(self):
         self.team_strength = 0
+        self.squad = ""
 
     def select_team(self, academy_level):
         players = {}
@@ -50,6 +51,7 @@ choose exactly 11 players.")
 
         for k, v in selected_players.items():
             print(k, v, end="||")
+            self.squad += f'{k, v}||'
 
         player_values = []
         for value in selected_players.values():
@@ -57,5 +59,10 @@ choose exactly 11 players.")
         print()
         self.team_strength = (sum(player_values) // 11)
         return self.team_strength
+
+    def player_development(self):
+        squad_ = self.squad.split('||')
+        print(squad_[0][1])
+
 
 
