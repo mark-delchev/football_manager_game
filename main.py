@@ -13,10 +13,6 @@ budget = 1000000
 
 while True:
     rival_team = teams_instance.random_team()
-
-    #print(f"Your team's rating is {team_strength} and you will be playing against\
- #{teams_instance.r_team} with {teams_instance.r_rating} rating.")
-
     """
     for i in range(100):
         result = match_instance.simulate_match(f"{team_name}-{team_strength}", "Real Madrid-97")
@@ -24,6 +20,7 @@ while True:
             print(result)
     """
     result = match_instance.simulate_match(f"{team_name}-{team_strength}", f"{rival_team}")
+    team_strength = player_selection_instance.player_development()
     #print(result)
     if match_instance.t1_goals >= match_instance.t2_goals:
         print(f"Your team's rating is {team_strength} and you will be playing against\
@@ -35,7 +32,6 @@ while True:
     if budget >= 5000000:
         break
 
-player_selection_instance.player_development()
 
 """
 Levski
