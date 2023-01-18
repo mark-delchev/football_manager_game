@@ -62,7 +62,23 @@ choose exactly 11 players.")
 
     def player_development(self):
         squad_ = self.squad.split('||')
-        print(squad_[0][1])
+        player_name_dev = ""
+        player_rating_dev = ""
+        dev_players = {}
+        for i in range(len(squad_)):
+            player_nr = squad_[i]
+            for char in player_nr:
+                if char.isalpha():
+                    player_name_dev += char
+                elif char.isnumeric():
+                    player_rating_dev += char
+            if player_name_dev != "":
+                dev_players[player_name_dev] = int(player_rating_dev)
+            player_name_dev = ""
+            player_rating_dev = ""
+        print(dev_players)
+
+
 
 
 
