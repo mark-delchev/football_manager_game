@@ -6,26 +6,8 @@ class PlayerSelection:
 
     def __init__(self):
         self.team_strength = 0
+        self.selected_players = {}
         self.squad = ""
-
-    def player_development(self):
-        squad_ = self.squad.split('||')
-        player_name_dev = ""
-        player_rating_dev = ""
-        dev_players = {}
-        for i in range(len(squad_)):
-            player_nr = squad_[i]
-            for char in player_nr:
-                if char.isalpha():
-                    player_name_dev += char
-                elif char.isnumeric():
-                    player_rating_dev += char
-            if player_name_dev != "":
-                dev_players[player_name_dev] = int(player_rating_dev) + randint(0, 10)
-            player_name_dev = ""
-            player_rating_dev = ""
-        new_team_strength = (sum(dev_players.values()) // 11)
-        return new_team_strength
 
     def select_team(self, academy_level):
         players = {}
@@ -66,18 +48,30 @@ choose exactly 11 players.")
             players_tuples[key].append(item)
 
         for i in chosen_players:
-            selected_players[players_tuples.get(i)[0][0][1]] = players_tuples.get(i)[0][1]
+            self.selected_players[players_tuples.get(i)[0][0][1]] = players_tuples.get(i)[0][1]
 
-        for k, v in selected_players.items():
+        for k, v in self.selected_players.items():
             print(k, v, end="||")
             self.squad += f'{k, v}||'
 
         player_values = []
-        for value in selected_players.values():
+        for value in self.selected_players.values():
             player_values.append(value)
         print()
         self.team_strength = (sum(player_values) // 11)
         return self.team_strength
+
+    def player_development(self):
+        dev_players = {}
+        if dev_players == {}:
+            dev_players = self.selected_players
+        dev_players_keys = list(dev_players.keys())
+        dev_players_values = list(dev_players.values())
+
+        for i in range(len(dev_players)):
+            dev_players[dev_players_keys[i]] = dev_players_values[i] + randint(0, 10)
+        new_team_strength = (sum(dev_players.values()) // 11)
+        return new_team_strength
 
 
 
