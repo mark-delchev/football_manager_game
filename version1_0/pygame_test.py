@@ -1,7 +1,6 @@
 import pygame
 from teams import *
-from match_simulation import *
-from players import *
+from version1_0.match_simulation import *
 
 pygame.init()
 screen = pygame.display.set_mode((800, 800))

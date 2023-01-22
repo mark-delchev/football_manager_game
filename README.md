@@ -7,3 +7,4 @@ Features added until now:
 - Final score algorithm
 - Player selection
 - Random rival team selection
+- Personal player development
