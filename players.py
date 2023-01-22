@@ -8,6 +8,7 @@ class PlayerSelection:
         self.team_strength = 0
         self.selected_players = {}
         self.squad = ""
+        self.developed_players = {}
 
     def select_team(self, academy_level):
         players = {}
@@ -70,8 +71,19 @@ choose exactly 11 players.")
 
         for i in range(len(dev_players)):
             dev_players[dev_players_keys[i]] = dev_players_values[i] + randint(0, 10)
+            if dev_players[dev_players_keys[i]] > 100:
+                dev_players[dev_players_keys[i]] = 100
+        self.developed_players = dev_players
         new_team_strength = (sum(dev_players.values()) // 11)
         return new_team_strength
+
+    def player_final_rating(self):
+        for k, v in self.developed_players.items():
+            print(k, v, end="||")
+
+
+
+
 
 
 
