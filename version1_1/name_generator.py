@@ -17,7 +17,9 @@ class Name:
             self.name = " ".join(name_lst)
             self.last_name = name_lst[1]
         self.name_trans = translit(self.name, 'bg', reversed=True)
-        return self.name_trans
+        last_name_lst = self.name_trans.split(" ")
+        last_name = last_name_lst[1]
+        return last_name
 
     def name_check(self, string):
         for i in range(100):
