@@ -25,10 +25,6 @@ class Match2:
         score2 = max(min(score2, 5), 0)
 
         match_result = f"{team1} {score1} - {score2} {team2}"
-        print(team1_attack)
-        print(team1_defense)
-        print(team2_attack)
-        print(team2_defense)
         print(match_result)
 
 
