@@ -19,6 +19,8 @@ class Name:
         self.name_trans = translit(self.name, 'bg', reversed=True)
         last_name_lst = self.name_trans.split(" ")
         last_name = last_name_lst[1]
+        if last_name[-1] == "a":
+            last_name = last_name[:-1]
         return last_name
 
     def name_check(self, string):

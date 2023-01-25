@@ -3,7 +3,7 @@ import random
 
 class Match2:
     def __init__(self):
-        pass
+        self.match_result = ""
 
     def match_simulation(self, team1, team2, team1_attack, team1_defense, team2_attack, team2_defense):
 
@@ -24,7 +24,7 @@ class Match2:
         score1 = max(min(score1, 5), 0)
         score2 = max(min(score2, 5), 0)
 
-        match_result = f"{team1} {score1} - {score2} {team2}"
-        print(match_result)
+        self.match_result = f"{team1} {score1} - {score2} {team2}"
+        print(self.match_result)
 
 

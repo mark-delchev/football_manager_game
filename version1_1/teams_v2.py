@@ -24,3 +24,21 @@ class Teams2:
         team, rating = random.choice(list(self.teams.items()))
         self.team = team
         self.rating = rating
+
+    def get_ranking(self):
+        # Create a list of dictionaries representing the teams
+        # example teams entry:
+        # {"name": "Manchester United", "points": 30, "goals": 20, "goal_difference": 5},
+        teams = [{"name": self.your_team, "points": 20, "goals": 20,
+                  "goal_difference": 5}]
+
+        # Sort the teams by points in descending order
+        teams = sorted(teams, key=lambda x: (x["points"], x["goal_difference"]), reverse=True)
+
+        # Print the table
+        print("{:<20} {:>10} {:>10} {:>10}".format("Team", "Points", "Goals", "Goal Diff"))
+        for team in teams:
+            print("{:<20} {:>10} {:>10} {:>10}".format(team["name"], team["points"], team["goals"], team["goal_difference"]))
+
+
+

@@ -1,8 +1,5 @@
 from name_generator import *
 from random import randint
-from match_simulation_v2 import *
-
-match_sim = Match2()
 
 
 class PlayerSelection2:

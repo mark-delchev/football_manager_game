@@ -12,5 +12,6 @@ teams_instance.random_team()
 match_instance.match_simulation(f"{teams_instance.your_team}", f"{teams_instance.team}",
                                 players_instance.team1_attack, players_instance.team1_defense,
                                 teams_instance.rating[0], teams_instance.rating[1])
+teams_instance.get_ranking()
 
 
