@@ -1,12 +1,37 @@
-from name_generator import *
 from random import randint
+from faker import Faker
+from transliterate import translit
 
 
 class PlayerSelection2:
     def __init__(self):
-        self.name_instance = Name()
         self.team1_defense = 0
         self.team1_attack = 0
+        self.name = ""
+        self.name_trans = ""
+
+    def gen_name(self):
+        fake = Faker('bg_BG')
+        self.name = fake.name_male()
+        name_lst = self.name.split(" ")
+        if len(name_lst) > 2:
+            del name_lst[0]
+            self.name = " ".join(name_lst)
+        self.name_trans = translit(self.name, 'bg', reversed=True)
+        last_name_lst = self.name_trans.split(" ")
+        last_name = last_name_lst[1]
+        if last_name[-1] == "a":
+            last_name = last_name[:-1]
+        if last_name.isupper() and any(x.isupper() for x in last_name[1:]):
+            last_name = last_name[0] + '-' + ''.join([x if not x.isupper() else '-' + x for x in last_name[1:]])
+        return last_name
+
+    def name_check(self, string):
+        while True:
+            self.gen_name()
+            if string in self.name_trans:
+                print(self.name_trans)
+                break
 
     def choose_players(self, academy_level):
         goalkeepers = {}
@@ -16,7 +41,7 @@ class PlayerSelection2:
 
         # Generates 23 players
         for i in range(23):
-            name = self.name_instance.gen_name()
+            name = self.gen_name()
             rating = randint(0, academy_level)
             if i < 3:
                 goalkeepers[i + 1, name] = rating

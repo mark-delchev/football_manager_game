@@ -8,3 +8,4 @@ Features added until now:
 - Player selection
 - Random rival team selection
 - Personal player development
+- Points tracking
