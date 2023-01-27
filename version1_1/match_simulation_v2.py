@@ -52,13 +52,18 @@ class MatchTeams:
         # Create a list of dictionaries representing the teams
         # example teams entry:
         # {"name": "Manchester United", "points": 30, "goals": 20, "goal_difference": 5},
-        goals = 0
+        goals_scored = 0
+        goals_conceded = 0
         points = 0
         if self.match_result.split(" ")[1] > self.match_result.split(" ")[3]:
             points += 3
 
-        teams = [{"name": self.your_team, "points": points, "goals": goals,
-                  "goal_difference": 5}]
+        goals_scored += int(self.match_result.split(" ")[1])
+        goals_conceded += int(self.match_result.split(" ")[3])
+        goal_difference = goals_scored - goals_conceded
+
+        teams = [{"name": self.your_team, "points": points, "goals": goals_scored,
+                  "goal_difference": goal_difference}]
 
         # Sort the teams by points in descending order
         teams = sorted(teams, key=lambda x: (x["points"], x["goal_difference"]), reverse=True)
@@ -66,7 +71,8 @@ class MatchTeams:
         # Print the table
         print("{:<20} {:>10} {:>10} {:>10}".format("Team", "Points", "Goals", "Goal Diff"))
         for team in teams:
-            print("{:<20} {:>10} {:>10} {:>10}".format(team["name"], team["points"], team["goals"], team["goal_difference"]))
+            print("{:<20} {:>10} {:>10} {:>10}".format(team["name"], team["points"], team["goals"],
+                                                       team["goal_difference"]))
 
 
 
