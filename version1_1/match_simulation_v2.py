@@ -17,6 +17,10 @@ class MatchTeams:
             "Torquay United": [0.29, 0.21],
             "Scunthrope United": [0.15, 0.12]
         }
+        self.points = 0
+        self.goals_scored = 0
+        self.goals_conceded = 0
+        self.goal_difference = 0
 
     def match_simulation(self, team1, team2, team1_attack, team1_defense, team2_attack, team2_defense):
 
@@ -52,27 +56,31 @@ class MatchTeams:
         # Create a list of dictionaries representing the teams
         # example teams entry:
         # {"name": "Manchester United", "points": 30, "goals": 20, "goal_difference": 5},
-        goals_scored = 0
-        goals_conceded = 0
-        points = 0
         if self.match_result.split(" ")[1] > self.match_result.split(" ")[3]:
-            points += 3
+            self.points += 3
+        elif self.match_result.split(" ")[1] == self.match_result.split(" ")[3]:
+            self.points += 1
 
-        goals_scored += int(self.match_result.split(" ")[1])
-        goals_conceded += int(self.match_result.split(" ")[3])
-        goal_difference = goals_scored - goals_conceded
+        self.goals_scored += int(self.match_result.split(" ")[1])
+        self.goals_conceded += int(self.match_result.split(" ")[3])
+        goal_difference = self.goals_scored - self.goals_conceded
 
-        teams = [{"name": self.your_team, "points": points, "goals": goals_scored,
+        teams = [{"name": self.your_team, "points": self.points, "goals": self.goals_scored,
                   "goal_difference": goal_difference}]
 
         # Sort the teams by points in descending order
         teams = sorted(teams, key=lambda x: (x["points"], x["goal_difference"]), reverse=True)
 
         # Print the table
-        print("{:<20} {:>10} {:>10} {:>10}".format("Team", "Points", "Goals", "Goal Diff"))
-        for team in teams:
-            print("{:<20} {:>10} {:>10} {:>10}".format(team["name"], team["points"], team["goals"],
-                                                       team["goal_difference"]))
+        # print("{:<20} {:>10} {:>10} {:>10}".format("Team", "Points", "Goals", "Goal Diff"))
+        # for team in teams:
+            #print("{:<20} {:>10} {:>10} {:>10}".format(team["name"], team["points"], team["goals"],
+        # team["goal_difference"]))
+        return "{:<20} {:>10} {:>10} {:>10}\n".format("Team", "Points", "Goals", "Goal Diff") + "\n".join(
+            "{:<20} {:>10} {:>10} {:>10}".format(team["name"], team["points"], team["goals"],
+                                                 team["goal_difference"])
+            for team in teams)
+
 
 
 
