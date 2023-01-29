@@ -7,7 +7,7 @@ match_instance = MatchTeams()
 academy_level = 10
 match_instance.choose_your_team()
 players_instance.choose_players(academy_level)
-matches_played = 8
+matches_played = 15
 for i in range(matches_played):
     match_instance.random_team()
     match_instance.match_simulation(f"{match_instance.your_team}", f"{match_instance.team}",

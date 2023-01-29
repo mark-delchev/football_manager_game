@@ -21,6 +21,7 @@ class MatchTeams:
         self.goals_scored = 0
         self.goals_conceded = 0
         self.goal_difference = 0
+        self.team_counts = {team: 0 for team in self.teams.keys()}
 
     def match_simulation(self, team1, team2, team1_attack, team1_defense, team2_attack, team2_defense):
 
@@ -48,9 +49,18 @@ class MatchTeams:
         self.your_team = input("Your team name: ")
 
     def random_team(self):
-        team, rating = random.choice(list(self.teams.items()))
-        self.team = team
-        self.rating = rating
+        # Resets function if all teams have been selected twice
+        if all(count == 2 for count in self.team_counts.values()):
+            self.team_counts = {team: 0 for team in self.teams.keys()}
+
+        # Chooses random teams that have not been selected twice
+        while True:
+            team, rating = random.choice(list(self.teams.items()))
+            if self.team_counts[team] < 2:
+                self.team = team
+                self.rating = rating
+                self.team_counts[team] += 1
+                break
 
     def get_ranking(self):
         # Create a list of dictionaries representing the teams
