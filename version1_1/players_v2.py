@@ -26,13 +26,6 @@ class PlayerSelection2:
             last_name = last_name[0] + '-' + ''.join([x if not x.isupper() else '-' + x for x in last_name[1:]])
         return last_name
 
-    def name_check(self, string):
-        while True:
-            self.gen_name()
-            if string in self.name_trans:
-                print(self.name_trans)
-                break
-
     def choose_players(self, academy_level):
         goalkeepers = {}
         defenders = {}
