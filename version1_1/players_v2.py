@@ -10,9 +10,12 @@ class PlayerSelection2:
         self.name = ""
         self.name_trans = ""
 
+    # Generating bulgarian surnames for all players in cyrillic and transliterating
+    # them to latin script
     def gen_name(self):
         fake = Faker('bg_BG')
         self.name = fake.name_male()
+        # Splitting the name to remove titles like Dr. and Mr.
         name_lst = self.name.split(" ")
         if len(name_lst) > 2:
             del name_lst[0]
@@ -20,8 +23,10 @@ class PlayerSelection2:
         self.name_trans = translit(self.name, 'bg', reversed=True)
         last_name_lst = self.name_trans.split(" ")
         last_name = last_name_lst[1]
+        # Removing the 'a' in the last_name because that makes it feminine
         if last_name[-1] == "a":
             last_name = last_name[:-1]
+        # Making sure that double surnames are separated by '-'
         if last_name.isupper() and any(x.isupper() for x in last_name[1:]):
             last_name = last_name[0] + '-' + ''.join([x if not x.isupper() else '-' + x for x in last_name[1:]])
         return last_name

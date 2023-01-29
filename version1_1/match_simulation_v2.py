@@ -81,11 +81,6 @@ class MatchTeams:
         # Sort the teams by points in descending order
         teams = sorted(teams, key=lambda x: (x["points"], x["goal_difference"]), reverse=True)
 
-        # Print the table
-        # print("{:<20} {:>10} {:>10} {:>10}".format("Team", "Points", "Goals", "Goal Diff"))
-        # for team in teams:
-            #print("{:<20} {:>10} {:>10} {:>10}".format(team["name"], team["points"], team["goals"],
-        # team["goal_difference"]))
         return "{:<20} {:>10} {:>10} {:>10}\n".format("Team", "Points", "Goals", "Goal Diff") + "\n".join(
             "{:<20} {:>10} {:>10} {:>10}".format(team["name"], team["points"], team["goals"],
                                                  team["goal_difference"])
