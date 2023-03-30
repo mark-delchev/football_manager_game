@@ -1,5 +1,7 @@
-from player_names import *
+from players import *
 
-names_instance = PlayerNames()
+player_instance = Player()
 
-print(names_instance.gen_player_name("England"))
+print(player_instance.gen_player_name("England"))
+print(player_instance.gen_player_position())
+print(player_instance.gen_player_stats(20))
