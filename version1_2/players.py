@@ -33,24 +33,29 @@ class Player:
         return self.position
 
     # Gives each player random stats depending on their position with from 0 to a max_rating variable
-    def gen_player_stats(self, max_rating):
+    def gen_player_stats(self, max_rating, academy):
         if self.position == "goalkeeper":
             self.player_stats = {"Goalkeeping": randint(0, max_rating),
-                                 "Aggression": randint(0, max_rating),
-                                 "Injury": randint(0, max_rating)}
+                                 "Aggression": randint(0, 20),
+                                 "Injury": randint(0, 20)}
         elif self.position == "defender":
             self.player_stats = {"Defending": randint(0, max_rating),
-                                 "Aggression": randint(0, max_rating),
-                                 "Injury": randint(0, max_rating)}
+                                 "Aggression": randint(0, 20),
+                                 "Injury": randint(0, 20)}
         elif self.position == "midfielder":
             self.player_stats = {"Passing": randint(0, max_rating),
-                                 "Aggression": randint(0, max_rating),
-                                 "Injury": randint(0, max_rating)}
+                                 "Aggression": randint(0, 20),
+                                 "Injury": randint(0, 20)}
         elif self.position == "attacker":
             self.player_stats = {"Shooting": randint(0, max_rating),
-                                 "Aggression": randint(0, max_rating),
-                                 "Injury": randint(0, max_rating)}
+                                 "Aggression": randint(0, 20),
+                                 "Injury": randint(0, 20)}
         # Append all player data to a list of the team
+        # Determine if generated player are from academy or on the transfer market
+        if academy:
+            self.player_stats["age"] = randint(15, 20)
+        else:
+            self.player_stats["age"] = randint(18, 37)
         self.player_stats[self.player_name] = self.position
         self.team_stats.append(self.player_stats)
         return self.player_stats
