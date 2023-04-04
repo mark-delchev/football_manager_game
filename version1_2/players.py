@@ -9,6 +9,7 @@ class Player:
         self.player_stats = {}
         self.position = ""
         self.team_stats = []
+        self.chosen_players_stats = []
 
     # Generates a name for the player using different locales depending on country chosen
     def gen_player_name(self, country):
@@ -59,6 +60,12 @@ class Player:
         self.player_stats[self.player_name] = self.position
         self.team_stats.append(self.player_stats)
         return self.player_stats
+
+    def choose_players(self, player_stats, player_nums):
+        for i in range(len(player_nums)):
+            self.chosen_players_stats.append(player_stats[i])
+
+
 
 
 
