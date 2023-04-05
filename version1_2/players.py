@@ -1,6 +1,7 @@
 from faker import Faker
 from transliterate import translit
 from random import randint
+from operator import itemgetter
 
 
 class Player:
@@ -10,9 +11,10 @@ class Player:
         self.position = ""
         self.team_stats = []
         self.chosen_players = []
+        self.counter = 0
 
-    # Generates a name for the player using different locales depending on country chosen
-    def gen_player_name(self, country):
+    def gen_player_info(self, country, max_rating, academy):
+        self.counter += 1
         locale = ""
         if country == "England":
             locale = "en_UK"
@@ -24,17 +26,10 @@ class Player:
         if len(name_lst) > 2:
             del name_lst[0]
             self.player_name = " ".join(name_lst)
-        return self.player_name
 
-    # Outputs a random position out of 4
-    def gen_player_position(self):
         num = randint(0, 3)
         positions = ["goalkeeper", "defender", "midfielder", "attacker"]
         self.position = positions[num]
-        return self.position
-
-    # Gives each player random stats depending on their position with from 0 to a max_rating variable
-    def gen_player_stats(self, max_rating, academy):
         if self.position == "goalkeeper":
             self.player_stats = {"Goalkeeping": randint(0, max_rating),
                                  "Aggression": randint(0, 20),
@@ -51,19 +46,23 @@ class Player:
             self.player_stats = {"Shooting": randint(0, max_rating),
                                  "Aggression": randint(0, 20),
                                  "Injury": randint(0, 20)}
-        # Append all player data to a list of the team
-        # Determine if generated player are from academy or on the transfer market
         if academy:
             self.player_stats["age"] = randint(15, 20)
         else:
             self.player_stats["age"] = randint(18, 37)
-        self.player_stats[self.player_name] = self.position
+        self.player_stats["position"] = self.position
+        self.player_stats[self.player_name] = self.counter
         self.team_stats.append(self.player_stats)
         return self.player_stats
 
     def sort_age(self):
         age_sorted = sorted(self.team_stats, key=lambda x: x['age'])
         for i in age_sorted:
+            print(i)
+
+    def sort_pos(self):
+        pos_sorted = sorted(self.team_stats, key=itemgetter('position'))
+        for i in pos_sorted:
             print(i)
 
     def choose_players(self, team_stats, player_nums):

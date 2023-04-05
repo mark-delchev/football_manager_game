@@ -1,6 +1,5 @@
 from players import *
 from teams import *
-from operator import itemgetter
 
 player_instance = Player()
 team_instance = Teams()
@@ -12,34 +11,27 @@ while True:
     elif command == "academy":
         # Generates 11 players from the academy
         for i in range(11):
-            player_instance.gen_player_name("England")
-            player_instance.gen_player_position()
-            player_instance.gen_player_stats(20, True)
+            player_instance.gen_player_info("England", 20, True)
             print(player_instance.player_stats)
 
     elif command == "choose_players":
-        # Choose players by typing their numbers by the order they appear
+        # Choose players by typing their numbers
         chosen_players = [int(i) for i in input().split(" ")]
-        # Selects players based on numbers input
+        # Selects players based o
         player_instance.choose_players(player_instance.team_stats, chosen_players)
         player_instance.print_chosen_players()
     elif command == "buy_player":
         for i in range(11):
-            player_instance.gen_player_name("England")
-            player_instance.gen_player_position()
-            player_instance.gen_player_stats(20, False)
+            player_instance.gen_player_info("England", 20, True)
             print(player_instance.team_stats)
 
     elif command == "sort_age":
         # Sorts players by age using lambda
-        print(player_instance.sort_age())
-    elif command == "sort_position":
-        unsorted_players = player_instance.player_stats
-        pos_sorted = sorted(unsorted_players, key=itemgetter('name'))
-        for i in range(len(pos_sorted)):
-            print(pos_sorted[i])
+        player_instance.sort_age()
+    elif command == "sort_pos":
+        player_instance.sort_pos()
 
-# Generates average team stats based on chosen players' abilites
+# Generates average team stats based on chosen players' abilities
 team_instance.gen_team_stats(player_instance.chosen_players)
 # Outputs average team stats
 team_instance.print_team_stats()
