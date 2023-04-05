@@ -16,14 +16,13 @@ while True:
             player_instance.gen_player_position()
             player_instance.gen_player_stats(20, True)
             print(player_instance.player_stats)
+
+    elif command == "choose_players":
         # Choose players by typing their numbers by the order they appear
-        try:
-            chosen_players = [int(i) for i in input().split(" ")]
-            # Selects players based on numbers input
-            player_instance.choose_players(player_instance.team_stats, chosen_players)
-            player_instance.print_chosen_players()
-        except ValueError:
-            command = input()
+        chosen_players = [int(i) for i in input().split(" ")]
+        # Selects players based on numbers input
+        player_instance.choose_players(player_instance.team_stats, chosen_players)
+        player_instance.print_chosen_players()
     elif command == "buy_player":
         for i in range(11):
             player_instance.gen_player_name("England")
@@ -33,10 +32,7 @@ while True:
 
     elif command == "sort_age":
         # Sorts players by age using lambda
-        unsorted_players = player_instance.player_stats
-        age_sorted = sorted(unsorted_players, key=lambda x: x['age'])
-        for i in range(len(age_sorted)):
-            print(age_sorted[i])
+        print(player_instance.sort_age())
     elif command == "sort_position":
         unsorted_players = player_instance.player_stats
         pos_sorted = sorted(unsorted_players, key=itemgetter('name'))

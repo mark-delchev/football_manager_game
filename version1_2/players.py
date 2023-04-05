@@ -61,6 +61,11 @@ class Player:
         self.team_stats.append(self.player_stats)
         return self.player_stats
 
+    def sort_age(self):
+        age_sorted = sorted(self.team_stats, key=lambda x: x['age'])
+        for i in age_sorted:
+            print(i)
+
     def choose_players(self, team_stats, player_nums):
         for i in player_nums:
             self.chosen_players.append(team_stats[i])
