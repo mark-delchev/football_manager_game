@@ -6,11 +6,13 @@ from operator import itemgetter
 
 class Player:
     def __init__(self):
-        self.player_name = ""
+        # Stats of each individual player (a dictionary)
         self.player_stats = {}
-        self.position = ""
+        # Stats of all players (a list of dicts)
         self.team_stats = []
+        # Stats of all chosen players
         self.chosen_players = []
+        # A counter that helps generate player numbers
         self.counter = 0
 
     # Generate player information
@@ -21,29 +23,29 @@ class Player:
             locale = "en_UK"
 
         fake = Faker(locale)
-        self.player_name = fake.name_male()
+        player_name = fake.name_male()
         # Splitting the name to remove titles like Dr. and Mr.
-        name_lst = self.player_name.split(" ")
+        name_lst = player_name.split(" ")
         if len(name_lst) > 2:
             del name_lst[0]
-            self.player_name = " ".join(name_lst)
+            player_name = " ".join(name_lst)
 
         num = randint(0, 3)
         positions = ["goalkeeper", "defender", "midfielder", "attacker"]
-        self.position = positions[num]
-        if self.position == "goalkeeper":
+        position = positions[num]
+        if position == "goalkeeper":
             self.player_stats = {"Goalkeeping": randint(0, max_rating),
                                  "Aggression": randint(0, 20),
                                  "Injury": randint(0, 20)}
-        elif self.position == "defender":
+        elif position == "defender":
             self.player_stats = {"Defending": randint(0, max_rating),
                                  "Aggression": randint(0, 20),
                                  "Injury": randint(0, 20)}
-        elif self.position == "midfielder":
+        elif position == "midfielder":
             self.player_stats = {"Passing": randint(0, max_rating),
                                  "Aggression": randint(0, 20),
                                  "Injury": randint(0, 20)}
-        elif self.position == "attacker":
+        elif position == "attacker":
             self.player_stats = {"Shooting": randint(0, max_rating),
                                  "Aggression": randint(0, 20),
                                  "Injury": randint(0, 20)}
@@ -51,8 +53,8 @@ class Player:
             self.player_stats["age"] = randint(15, 20)
         else:
             self.player_stats["age"] = randint(18, 37)
-        self.player_stats["position"] = self.position
-        self.player_stats["name"] = self.player_name
+        self.player_stats["position"] = position
+        self.player_stats["name"] = player_name
         self.player_stats["number"] = self.counter
         self.team_stats.append(self.player_stats)
         return self.player_stats

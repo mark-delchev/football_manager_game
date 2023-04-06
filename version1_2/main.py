@@ -23,12 +23,13 @@ while True:
             print(player_instance.player_stats)
 
     elif command == "sort_age":
-        # Sorts players by age using lambda
         player_instance.sort_age()
     elif command == "sort_pos":
         player_instance.sort_pos()
 
+
 # Generates average team stats based on chosen players' abilities
 team_instance.gen_team_stats(player_instance.chosen_players)
+
 # Outputs average team stats
 team_instance.print_team_stats()

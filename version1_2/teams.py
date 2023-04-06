@@ -21,15 +21,14 @@ class Teams:
             team_midfield_each.append(team_stats[i].get("Passing"))
             team_aggression_each.append(team_stats[i].get("Aggression"))
             team_defense_each.append(team_stats[i].get("Defending"))
+            team_defense_each.append(team_stats[i].get("Goalkeeping"))
             team_injury_each.append(team_stats[i].get("Injury"))
             # Removing players from different positions that don't have the required stat
-            if None in team_attack_each or team_defense_each or team_midfield_each:
-                try:
-                    team_attack_each.remove(None)
-                    team_defense_each.remove(None)
-                    team_midfield_each.remove(None)
-                except ValueError:
-                    pass
+
+            team_attack_each = [x for x in team_attack_each if x is not None]
+            team_midfield_each = [x for x in team_midfield_each if x is not None]
+            team_defense_each = [x for x in team_defense_each if x is not None]
+
         # Converting the list into a average team aggression
         self.team_aggression = sum(team_aggression_each) // len(team_aggression_each)
         self.team_attack = sum(team_attack_each) // len(team_attack_each)
