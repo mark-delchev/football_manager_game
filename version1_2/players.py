@@ -13,6 +13,7 @@ class Player:
         self.chosen_players = []
         self.counter = 0
 
+    # Generate player information
     def gen_player_info(self, country, max_rating, academy):
         self.counter += 1
         locale = ""
@@ -51,27 +52,32 @@ class Player:
         else:
             self.player_stats["age"] = randint(18, 37)
         self.player_stats["position"] = self.position
-        self.player_stats[self.player_name] = self.counter
+        self.player_stats["name"] = self.player_name
+        self.player_stats["number"] = self.counter
         self.team_stats.append(self.player_stats)
         return self.player_stats
 
+    # Sort players by age
     def sort_age(self):
         age_sorted = sorted(self.team_stats, key=lambda x: x['age'])
         for i in age_sorted:
             print(i)
 
+    # Sort players by position
     def sort_pos(self):
         pos_sorted = sorted(self.team_stats, key=itemgetter('position'))
         for i in pos_sorted:
             print(i)
 
-    def choose_players(self, team_stats, player_nums):
-        for i in player_nums:
-            self.chosen_players.append(team_stats[i])
-
-    def print_chosen_players(self):
-        for k in self.chosen_players:
-            print(k)
+    # Choose players by their number
+    def choose_players(self):
+        player_nums = [int(i) for i in input().split(" ")]
+        for i in range(len(self.team_stats)):
+            player_num = self.team_stats[i].get("number")
+            if player_num in player_nums:
+                self.chosen_players.append(self.team_stats[i])
+        for i in self.chosen_players:
+            print(i)
 
 
 
