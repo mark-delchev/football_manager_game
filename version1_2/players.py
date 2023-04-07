@@ -14,13 +14,29 @@ class Player:
         self.chosen_players = []
         # A counter that helps generate player numbers
         self.counter = 0
+        # The chosen country of origin for the club
+        self.chosen_country = ""
+
+    def gen_country(self):
+        countries = ["France", "England", "Germany", "Italy", "Spain", "Russia",
+                     "Norway", "Bulgaria"]
+        countries_dict = {}
+        counter_c = 1
+        for i in countries:
+            countries_dict[str(counter_c)] = i
+            counter_c += 1
+        print(countries_dict)
+        pick_country = input("Pick your country by typing the country number: ")
+        self.chosen_country = countries_dict.get(pick_country)
 
     # Generate player information
-    def gen_player_info(self, country, max_rating, academy):
+    def gen_player_info(self, max_rating, academy):
         self.counter += 1
         locale = ""
-        if country == "England":
+        if self.chosen_country == "England":
             locale = "en_UK"
+        elif self.chosen_country == "France":
+            locale = "fr_FR"
 
         fake = Faker(locale)
         player_name = fake.name_male()

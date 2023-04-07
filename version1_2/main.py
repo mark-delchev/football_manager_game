@@ -9,17 +9,19 @@ while True:
     if command == "stop":
         break
     elif command == "academy":
+        player_instance.gen_country()
         # Generates 11 players from the academy
         for i in range(11):
-            player_instance.gen_player_info("England", 20, True)
+            player_instance.gen_player_info(20, True)
             print(player_instance.player_stats)
 
     elif command == "choose_players":
         player_instance.choose_players()
 
     elif command == "buy_player":
+        player_instance.gen_country()
         for i in range(11):
-            player_instance.gen_player_info("England", 20, True)
+            player_instance.gen_player_info(20, True)
             print(player_instance.player_stats)
 
     elif command == "sort_age":
