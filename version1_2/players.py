@@ -1,6 +1,10 @@
+import random
+
+import transliterate
 from faker import Faker
 from transliterate import translit
 from random import randint
+from random import choice
 from operator import itemgetter
 
 
@@ -37,14 +41,27 @@ class Player:
             locale = "en_UK"
         elif self.chosen_country == "France":
             locale = "fr_FR"
-
+        elif self.chosen_country == "Germany":
+            locale = "de_DE"
+        elif self.chosen_country == "Italy":
+            locale = "it_IT"
+        elif self.chosen_country == "Spain":
+            locale = "es_ES"
+        elif self.chosen_country == "Russia":
+            locale = "ru_RU"
+        elif self.chosen_country == "Norway":
+            locale = "no_NO"
+        elif self.chosen_country == "Bulgaria":
+            locale = "bg_BG"
+        locales_lst = ["bg_BG", "no_NO", "ru_RU", "de_DE", "es_ES", "it_IT", "fr_FR", "en_UK"]
+        if not academy:
+            locale = random.choice(locales_lst)
         fake = Faker(locale)
-        player_name = fake.name_male()
-        # Splitting the name to remove titles like Dr. and Mr.
-        name_lst = player_name.split(" ")
-        if len(name_lst) > 2:
-            del name_lst[0]
-            player_name = " ".join(name_lst)
+        player_name = fake.first_name_male() + " " + fake.last_name_male()
+        if locale == "ru_RU":
+            player_name = translit(player_name, 'ru', reversed=True)
+        elif locale == "bg_BG":
+            player_name = translit(player_name, 'bg', reversed=True)
 
         num = randint(0, 3)
         positions = ["goalkeeper", "defender", "midfielder", "attacker"]

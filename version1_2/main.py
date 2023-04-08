@@ -19,9 +19,8 @@ while True:
         player_instance.choose_players()
 
     elif command == "buy_player":
-        player_instance.gen_country()
         for i in range(11):
-            player_instance.gen_player_info(20, True)
+            player_instance.gen_player_info(20, False)
             print(player_instance.player_stats)
 
     elif command == "sort_age":
