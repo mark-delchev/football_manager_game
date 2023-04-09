@@ -1,10 +1,8 @@
 import random
 
-import transliterate
 from faker import Faker
 from transliterate import translit
 from random import randint
-from random import choice
 from operator import itemgetter
 
 
@@ -35,6 +33,7 @@ class Player:
 
     # Generate player information
     def gen_player_info(self, max_rating, academy):
+        # Picks locale for the player depending on his country of origin
         self.counter += 1
         locale = ""
         if self.chosen_country == "England":
@@ -54,8 +53,11 @@ class Player:
         elif self.chosen_country == "Bulgaria":
             locale = "bg_BG"
         locales_lst = ["bg_BG", "no_NO", "ru_RU", "de_DE", "es_ES", "it_IT", "fr_FR", "en_UK"]
+        # Selects random country if player not from academy
         if not academy:
             locale = random.choice(locales_lst)
+
+        # Generates a name based on the locale selected
         fake = Faker(locale)
         player_name = fake.first_name_male() + " " + fake.last_name_male()
         if locale == "ru_RU":
@@ -63,9 +65,11 @@ class Player:
         elif locale == "bg_BG":
             player_name = translit(player_name, 'bg', reversed=True)
 
-        num = randint(0, 3)
+        # Generates a random position
         positions = ["goalkeeper", "defender", "midfielder", "attacker"]
-        position = positions[num]
+        position = random.choice(positions)
+
+        # Depending on position generate player stats
         if position == "goalkeeper":
             self.player_stats = {"Goalkeeping": randint(0, max_rating),
                                  "Aggression": randint(0, 20),
@@ -106,9 +110,12 @@ class Player:
 
     # Choose players by their number
     def choose_players(self):
+        # Numbers input by the user (ex: 1 2 3)
         player_nums = [int(i) for i in input().split(" ")]
         for i in range(len(self.team_stats)):
+            # Getting player num from each player dict
             player_num = self.team_stats[i].get("number")
+            # Checking if the player num is among the chosen ones and appending it
             if player_num in player_nums:
                 self.chosen_players.append(self.team_stats[i])
         for i in self.chosen_players:
