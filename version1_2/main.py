@@ -32,6 +32,9 @@ while True:
     elif command == "sort_pos":
         # Sorts currently generated players by position
         player_instance.sort_pos()
+    elif command == "sort_stats":
+        # Sorts currently generated players by position
+        player_instance.sort_stats()
 
 
 # Generates average team stats based on chosen players' abilities

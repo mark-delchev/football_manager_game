@@ -75,7 +75,7 @@ class Player:
                                  "Aggression": randint(0, 20),
                                  "Injury": randint(0, 20)}
         elif position == "defender":
-            self.player_stats = {"Defending": randint(0, max_rating),
+            self.player_stats = {"Tackling": randint(0, max_rating),
                                  "Aggression": randint(0, 20),
                                  "Injury": randint(0, 20)}
         elif position == "midfielder":
@@ -106,6 +106,17 @@ class Player:
     def sort_pos(self):
         pos_sorted = sorted(self.team_stats, key=itemgetter('position'))
         for i in pos_sorted:
+            print(i)
+
+    def sort_stats(self):
+        position_main_stat = {
+            'attacker': 'Shooting',
+            'midfielder': 'Passing',
+            'defender': 'Tackling',
+            'goalkeeper': 'Goalkeeping'
+        }
+        stat_sorted = sorted(self.team_stats, key=lambda x: x[position_main_stat[x['position']]])
+        for i in stat_sorted:
             print(i)
 
     # Choose players by their number
