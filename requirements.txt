@@ -1,0 +1,4 @@
+Faker==18.10.1
+python-dateutil==2.8.2
+six==1.16.0
+transliterate==1.10.2
