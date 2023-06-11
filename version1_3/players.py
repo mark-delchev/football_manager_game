@@ -19,17 +19,14 @@ class Player:
         # The chosen country of origin for the club
         self.chosen_country = ""
 
-    def gen_country(self):
+    def choose_country(self):
         countries = ["France", "England", "Germany", "Italy", "Spain", "Russia",
                      "Norway", "Bulgaria"]
-        countries_dict = {}
-        counter_c = 1
-        for i in countries:
-            countries_dict[str(counter_c)] = i
-            counter_c += 1
-        print(countries_dict)
-        pick_country = input("Pick your country by typing the country number: ")
-        self.chosen_country = countries_dict.get(pick_country)
+        for num, country in enumerate(countries):
+            print(f"{int(num) + 1}: {country}", end=', ')
+        print()
+        picked_country = input("Pick your country by typing the country number: ")
+        self.chosen_country = countries[int(picked_country) - 1]
 
     # Generate player information
     def gen_player_info(self, max_rating, academy):
