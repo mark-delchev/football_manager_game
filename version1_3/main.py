@@ -1,26 +1,17 @@
-from flask import Flask, render_template, request
-from players import Player
+from flask import Flask, render_template
+import random
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
-def generate_player():
-    if request.method == 'POST':
-        picked_country = request.form['country']
-        team1 = Player()
-        team1.choose_country(picked_country)
+@app.route('/')
+def index():
+    names = generate_names()  # Replace generate_names() with your own function
+    return render_template('index.html', names=names)
 
-        # Generate multiple players (e.g., 5 players)
-        num_players = 5
-        players_info = []
-        for _ in range(num_players):
-            player_info = team1.gen_player_info(max_rating=100, academy=False)
-            players_info.append(player_info)
-
-        return render_template('result.html', players_info=players_info, chosen_country=picked_country)
-    return render_template('index.html')
-
+def generate_names():
+    # Your code to generate random names
+    names = ['Alice', 'Bob', 'Charlie']  # Replace with your actual name generation logic
+    return names
 
 if __name__ == '__main__':
-    app.debug = True
-    app.run()
+    app.run(debug=True)
